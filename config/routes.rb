@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :projects
   resources :todos
 
+  get 'dashboard', to: 'todos#dashboard'
+
   root "application#index"
 
 end

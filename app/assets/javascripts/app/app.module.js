@@ -7,7 +7,8 @@ angular.module('projectManagement', [
   'valdr',
   'vAccordion',
   'ng-mfb',
-  'angular-loading-bar'
+  'angular-loading-bar',
+  'Devise'
 ]);
 
 angular.module('projectManagement')

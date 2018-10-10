@@ -22,7 +22,10 @@
        <div style="color:gray;font-size:14px;text-align:justify">{{todo.description}}</div>
        <div layout="row" layout-align="space-between">
          <div>
-           <span>{{todo.project.name}}</span>
+           <span>{{todo.project.name}}
+         </div>
+         <div>
+           <span>{{todo.status | uppercase}}</span>
          </div>
          <div>
            <span>{{todo.developer.name}}</span>
@@ -33,7 +36,7 @@
   </md-content>
 </div>
 
-<button class="md-fab md-fab-bottom-right docs-scroll-fab md-button md-ink-ripple scrolling" type="button" aria-label="Add" ng-click="TodoHomeVM.createEditTodo($event,{},null)">
+<button class="md-fab md-fab-bottom-right docs-scroll-fab md-button md-ink-ripple scrolling" type="button" aria-label="Add" ng-click="TodoHomeVM.createEditTodo($event,{status: 'open'},null)">
     <md-icon md-svg-src="images/plus.svg"  role="img" aria-hidden="true"></md-icon>
     <md-tooltip md-direction="top">Add Todo</md-tooltip>
 </button>

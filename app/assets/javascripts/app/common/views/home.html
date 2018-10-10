@@ -24,8 +24,13 @@ letter-spacing: .14px;
       <md-list style="width: 100%;">
         <md-list-item ng-repeat="menu in HomeCtrlVM.menuItem" ng-click="HomeCtrlVM.goTo(menu.state)">
             <div layout="row">
-              <span ng-bind-html="menu.icon"></span>&nbsp;&nbsp;{{::menu.name}}
+              {{::menu.name}}
             </div>
+        </md-list-item>
+        <md-list-item ng-click="HomeCtrlVM.logout()">
+          <div>
+            Logout
+          </div>
         </md-list-item>
       </md-list>
     </md-sidenav>

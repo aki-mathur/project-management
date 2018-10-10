@@ -6,6 +6,10 @@ angular.module('projectManagement').factory('TodoService', ['$resource', functio
   }, {
     update: {
       method: 'put'
+    },
+    dashboard: {
+      method: 'get',
+      url: '/dashboard'
     }
   });
   return TodoService;

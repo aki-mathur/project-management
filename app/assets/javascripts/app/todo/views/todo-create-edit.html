@@ -28,10 +28,23 @@
     <div class="md-dialog-content" ng-class="{ 'form-submitted': formSubmitted }">
       <form name="todoForm" valdr-type="AddTodo" novalidate on-navigate-away-strategy='none'>
 
-          <md-input-container  class="md-block"  valdr-form-group>
+        <div layout="row">
+
+          <md-input-container  class="md-block"  valdr-form-group flex="80">
             <label>Name *</label>
             <input ng-model="TodoCreateEditVM.todo.name" name="name">
           </md-input-container>
+
+          <md-input-container flex="20">
+            <label>Developer</label>
+            <md-select name="type" ng-model="TodoCreateEditVM.todo.status">
+              <md-option ng-repeat="status in TodoCreateEditVM.statuses" ng-value="status.value">
+               {{status.name}}
+             </md-option>
+            </md-select>
+          </md-input-container>
+
+      </div>
 
 
         <md-input-container class="md-block" valdr-form-group>

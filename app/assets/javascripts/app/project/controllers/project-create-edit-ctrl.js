@@ -79,10 +79,8 @@
         $scope.formSubmitted = true;
         returnBack = true;
       }
-console.log("error");
       if(returnBack)
       return;
-console.log("ProjectCreateEditVM.selectedDevelopers"+ProjectCreateEditVM.selectedDevelopers);
       ProjectCreateEditVM.project.developer_ids = ProjectCreateEditVM.selectedDevelopers.map(function(head) {
         return head.id;
       })
@@ -91,6 +89,8 @@ console.log("ProjectCreateEditVM.selectedDevelopers"+ProjectCreateEditVM.selecte
         ProjectService.update(ProjectCreateEditVM.project).$promise.then(function(value) {
           ProjectCreateEditVM.project = value
           ProjectCreateEditVM.projectErrors = [];
+          ProjectCreateEditVM.project.requestType = "update";
+          $mdDialog.hide(ProjectCreateEditVM.project);
         }, function(badResponse) {
           ProjectCreateEditVM.projectErrors = badResponse.data.errors;
           $mdToast.show({
@@ -103,6 +103,8 @@ console.log("ProjectCreateEditVM.selectedDevelopers"+ProjectCreateEditVM.selecte
         ProjectService.save({project: ProjectCreateEditVM.project}).$promise.then(function(value) {
           ProjectCreateEditVM.project = value
           ProjectCreateEditVM.projectErrors = [];
+          ProjectCreateEditVM.project.requestType = "save";
+          $mdDialog.hide(ProjectCreateEditVM.project);
         }, function(badResponse) {
           ProjectCreateEditVM.projectErrors = badResponse.data.errors;
           $mdToast.show({
@@ -118,7 +120,8 @@ console.log("ProjectCreateEditVM.selectedDevelopers"+ProjectCreateEditVM.selecte
       ProjectService.delete({
         id: ProjectCreateEditVM.project.id
       }).$promise.then(function(value) {
-
+        ProjectCreateEditVM.project.requestType = "delete";
+        $mdDialog.hide(ProjectCreateEditVM.project);
       }, function(response) {
         //  $scope.experienceErrors = response.data.errors;
       });

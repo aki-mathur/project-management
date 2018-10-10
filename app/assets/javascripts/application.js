@@ -28,5 +28,7 @@
 //= require_tree .
 //
 //= require vaccordion/v-accordion
+//= require angular-devise.min
+
 
 //= require loading/loading-bar

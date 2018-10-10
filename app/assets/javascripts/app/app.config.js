@@ -16,8 +16,16 @@ angular.module('projectManagement').config(['$stateProvider','$urlRouterProvider
   }
 
   var containerPublicHomeState = {
-    name: 'container.public.home',
-    url: '/'
+    name: 'login',
+    url: '/login',
+    controller: 'LoginCtrl as LoginVM',
+    templateUrl: 'app/common/views/login.html',
+    onEnter: function(Auth, $state){
+      console.log(Auth.currentUser());
+         Auth.currentUser().then(function(){
+           $state.go('container.user.dashboard')
+         })
+       }
   }
 
   var containerUserState = {

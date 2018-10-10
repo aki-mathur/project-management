@@ -1,12 +1,14 @@
 (function() {
   'use strict';
   angular.module('projectManagement').controller('ProjectHomeCtrl', ProjectHomeCtrl);
-  ProjectHomeCtrl.$inject = ['$scope', '$stateParams', '$state', '$mdDialog','projects'];
+  ProjectHomeCtrl.$inject = ['$scope', '$stateParams', '$state', '$mdDialog', 'projects','$mdToast', '$rootScope'];
 
-  function ProjectHomeCtrl($scope, $stateParams, $state, $mdDialog, projects) {
+  function ProjectHomeCtrl($scope, $stateParams, $state, $mdDialog, projects,$mdToast,$rootScope) {
     var ProjectHomeVM = this;
     ProjectHomeVM.projects = projects
     ProjectHomeVM.createEditProject = createEditProject
+
+    console.log($rootScope.user);
 
     function createEditProject(ev, project, index) {
       $mdDialog.show({

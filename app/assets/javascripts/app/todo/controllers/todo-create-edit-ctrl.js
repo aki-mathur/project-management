@@ -21,6 +21,7 @@
     TodoCreateEditVM.saveTodo = saveTodo
     TodoCreateEditVM.deleteTodo = deleteTodo;
     TodoCreateEditVM.todoErrors = []
+    TodoCreateEditVM.statuses = [{name:'Open',value:'open'},{name:'In Progress',value:'in_progress'},{name:'Done',value:'done'}]
 
 
     function saveTodo(form) {
@@ -32,14 +33,13 @@
       }
       if(returnBack)
       return;
-      TodoCreateEditVM.todo.developer_ids = TodoCreateEditVM.selectedDevelopers.map(function(head) {
-        return head.id;
-      })
 
       if (TodoCreateEditVM.isUpdate) {
         TodoService.update(TodoCreateEditVM.todo).$promise.then(function(value) {
           TodoCreateEditVM.todo = value
           TodoCreateEditVM.todoErrors = [];
+          TodoCreateEditVM.todo.requestType = "update";
+          $mdDialog.hide(TodoCreateEditVM.todo);
         }, function(badResponse) {
           TodoCreateEditVM.todoErrors = badResponse.data.errors;
           $mdToast.show({
@@ -52,6 +52,8 @@
         TodoService.save({todo: TodoCreateEditVM.todo}).$promise.then(function(value) {
           TodoCreateEditVM.todo = value
           TodoCreateEditVM.todoErrors = [];
+          TodoCreateEditVM.todo.requestType = "save";
+          $mdDialog.hide(TodoCreateEditVM.todo);
         }, function(badResponse) {
           TodoCreateEditVM.todoErrors = badResponse.data.errors;
           $mdToast.show({
@@ -67,7 +69,8 @@
       TodoService.delete({
         id: TodoCreateEditVM.todo.id
       }).$promise.then(function(value) {
-
+        TodoCreateEditVM.feeGroup.requestType = "delete";
+        $mdDialog.hide(TodoCreateEditVM.todo);
       }, function(response) {
         //  $scope.experienceErrors = response.data.errors;
       });

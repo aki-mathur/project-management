@@ -42,6 +42,11 @@ class TodosController < ApplicationController
     render json: ["Deleted successfully."], status: :ok
   end
 
+  def dashboard
+    todos = Todo.dashboard
+    render json: todos
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_todo
