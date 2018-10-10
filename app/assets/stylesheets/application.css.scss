@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+ // @import "bootstrap-sprockets";
+ // @import "bootstrap";
+
+ // @import "font-awesome-sprockets";
+ // @import "font-awesome";
+
+ @import "angular-material/angular-material.min";
+ @import "mfb";
+ @import "v-accordion";
+ @import "loading-bar";
