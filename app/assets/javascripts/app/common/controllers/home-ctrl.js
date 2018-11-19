@@ -10,6 +10,11 @@
     HomeCtrlVM.logout = logout;
     HomeCtrlVM.menuItem = []
 
+    if(!Auth.isAuthenticated()){
+      $state.go("login",{});
+    }
+
+
     function logout(){
       var config = {
             headers: {
