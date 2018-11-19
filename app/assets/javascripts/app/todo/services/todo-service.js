@@ -9,7 +9,13 @@ angular.module('projectManagement').factory('TodoService', ['$resource', functio
     },
     dashboard: {
       method: 'get',
+      isArray: true,
       url: '/dashboard'
+    },
+    charts: {
+      method: 'get',
+      isArray: true,
+      url: '/charts'
     }
   });
   return TodoService;

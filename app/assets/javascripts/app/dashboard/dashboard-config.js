@@ -3,13 +3,21 @@ angular.module('projectManagement').config(['$stateProvider', function($statePro
         .state('container.user.dashboard', {
               url: '/dashboard',
               controller: "DashboardCtrl as DashboardVM",
-              reloadOnSearch: false,
               templateUrl: 'app/dashboard/views/dashboard.html',
               resolve: {
                 tasks: ['TodoService', function(TodoService) {
-                  return TodoService.dashboard().$promise;
+                  return TodoService.dashboard({type: 'developer'}).$promise;
                 }]
               }
-          })
+          }).state('container.user.chart', {
+                url: '/charts',
+                controller: "ChartCtrl as ChartVM",
+                templateUrl: 'app/dashboard/views/chart.html',
+                resolve: {
+                  tasks: ['TodoService', function(TodoService) {
+                    return TodoService.charts().$promise;
+                  }]
+                }
+            })
 
 }]);

@@ -9,6 +9,8 @@
     TodoHomeVM.todos = todos;
     TodoHomeVM.newTodo = {}
     TodoHomeVM.todo = {}
+    
+    ProjectVM.can_create = $rootScope.user.role == "project_manager" ? true : false
 
 
     function createEditTodo(ev, todo, index) {
@@ -28,8 +30,8 @@
           projects: ['ProjectService', function(ProjectService) {
             return ProjectService.query().$promise;
           }],
-          developers: ['DeveloperService', function(DeveloperService) {
-            return DeveloperService.query({role:"developer"}).$promise;
+          developers: ['ProjectService','$stateParams', function(ProjectService, $stateParams) {
+            return ProjectService.developers({id: $stateParams.id}).$promise;
           }]
         }
       }).then(function(todo) {

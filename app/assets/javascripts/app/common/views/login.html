@@ -3,8 +3,6 @@
   max-width:  90%;
   width: 500px
 }
-
-
 </style>
 <div layout="column" layout-align="center center" layout-fill="layout-fill">
     <div layout="column" class="loginBox md-whiteframe-z1">
@@ -28,7 +26,8 @@
             </div>
           </md-input-container>
           <div layout="row" layout-align="center">
-            <md-button type="submit" class="md-raised md-primary" ng-click="LoginVM.login">Login</md-button>
+            <md-button type="submit" class="md-raised md-primary" ng-click="LoginVM.login()">Login</md-button>
+            <md-button type="submit" class="md-raised md-primary" ng-href="/#/signup">Sign Up</md-button>
           </div>
       </form>
     </div>

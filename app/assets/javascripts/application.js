@@ -32,3 +32,4 @@
 
 
 //= require loading/loading-bar
+//= require ng-google-chart

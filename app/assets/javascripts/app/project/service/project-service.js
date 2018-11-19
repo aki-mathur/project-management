@@ -6,6 +6,11 @@ angular.module('projectManagement').factory('ProjectService', ['$resource', func
   }, {
     update: {
       method: 'put'
+    },
+    developers: {
+      method: 'get',
+      isArray: true,
+      url: '/developers'
     }
   });
   return ProjectService;

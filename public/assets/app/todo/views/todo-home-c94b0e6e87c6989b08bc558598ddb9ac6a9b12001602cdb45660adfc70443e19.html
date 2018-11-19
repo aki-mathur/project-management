@@ -1,0 +1,42 @@
+<div layout="column" flex layout-fill ng-cloak>
+  <md-toolbar class="md-whiteframe-1dp">
+    <div layout="row">
+      <div class="md-toolbar-tools">Todos</div>
+    </div>
+  </md-toolbar>
+
+  <md-content style="height: calc(100vh - 64px);padding-bottom: 60px;" md-theme="altTheme">
+    <md-card ng-repeat="todo in TodoHomeVM.todos">
+     <md-card-content>
+       <div layout="row" layout-align="space-between">
+         <div>
+             <span style="font-weight:bold;">{{todo.name | uppercase}}</span>
+         </div>
+         <div layout="row">
+           <md-button id="close" class="md-icon-button" style="margin-top: -15px;" ng-click="TodoHomeVM.createEditTodo($event,todo,$index)">
+             <md-icon md-svg-src="images/pencil.svg" class="ng-scope" role="img" aria-hidden="true"></md-icon>
+             <md-tooltip>Edit</md-tooltip>
+           </md-button>
+         </div>
+       </div>
+       <div style="color:gray;font-size:14px;text-align:justify">{{todo.description}}</div>
+       <div layout="row" layout-align="space-between">
+         <div>
+           <span>{{todo.project.name}}
+         </div>
+         <div>
+           <span>{{todo.status | uppercase}}</span>
+         </div>
+         <div>
+           <span>{{todo.developer.name}}</span>
+         </div>
+       </div>
+     </md-card-content>
+   </md-card>
+  </md-content>
+</div>
+
+<button class="md-fab md-fab-bottom-right docs-scroll-fab md-button md-ink-ripple scrolling" type="button" aria-label="Add" ng-click="TodoHomeVM.createEditTodo($event,{status: 'open'},null)">
+    <md-icon md-svg-src="images/plus.svg"  role="img" aria-hidden="true"></md-icon>
+    <md-tooltip md-direction="top">Add Todo</md-tooltip>
+</button>

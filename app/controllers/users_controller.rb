@@ -17,8 +17,9 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params.merge!(created_by_id: 0, updated_by_id: 0))
     if @user.save
+      @user.add_role(:developer)
        render json: @user
      else
        render json: {errors: @user.errors.full_messages}, status: 422
@@ -37,10 +38,10 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   # DELETE /users/1.json
-  def destroy
-    @user.destroy
-    render json: ["Deleted successfully."], status: :ok
-  end
+  # def destroy
+  #   @user.destroy
+  #   render json: ["Deleted successfully."], status: :ok
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -50,6 +51,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.permit(:id, :name, :email, password)
+      params.require(:user).permit(:id, :name, :email, :password, :password_confirmation)
     end
 end

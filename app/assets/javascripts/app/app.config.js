@@ -21,11 +21,16 @@ angular.module('projectManagement').config(['$stateProvider','$urlRouterProvider
     controller: 'LoginCtrl as LoginVM',
     templateUrl: 'app/common/views/login.html',
     onEnter: function(Auth, $state){
-      console.log(Auth.currentUser());
          Auth.currentUser().then(function(){
            $state.go('container.user.dashboard')
          })
        }
+  }
+  var containerPublicRegistrationState = {
+    name: 'signup',
+    url: '/signup',
+    controller: 'RegistrationCtrl as RegistrationVM',
+    templateUrl: 'app/common/views/registration.html'
   }
 
   var containerUserState = {
@@ -37,6 +42,7 @@ angular.module('projectManagement').config(['$stateProvider','$urlRouterProvider
   $stateProvider.state(containerState);
   $stateProvider.state(containerPublicState);
   $stateProvider.state(containerPublicHomeState);
+  $stateProvider.state(containerPublicRegistrationState);
   $stateProvider.state(containerUserState);
 
 

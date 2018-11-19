@@ -49,7 +49,7 @@
             });
         });
       } else {
-        TodoService.save({todo: TodoCreateEditVM.todo}).$promise.then(function(value) {
+        TodoService.save(TodoCreateEditVM.todo).$promise.then(function(value) {
           TodoCreateEditVM.todo = value
           TodoCreateEditVM.todoErrors = [];
           TodoCreateEditVM.todo.requestType = "save";

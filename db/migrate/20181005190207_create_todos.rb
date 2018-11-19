@@ -10,6 +10,6 @@ class CreateTodos < ActiveRecord::Migration[5.1]
       t.references :updated_by, index: true, null: false
       t.timestamps
     end
-    add_index :todos, [:project_id, :developer_id], unique: true
+    add_index :todos, [:project_id, :developer_id]
   end
 end

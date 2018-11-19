@@ -8,7 +8,8 @@
     ProjectHomeVM.projects = projects
     ProjectHomeVM.createEditProject = createEditProject
 
-    console.log($rootScope.user);
+    ProjectHomeVM.can_create = $rootScope.user.role == "project_manager" ? true : false
+
 
     function createEditProject(ev, project, index) {
       $mdDialog.show({

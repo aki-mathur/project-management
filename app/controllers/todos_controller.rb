@@ -4,14 +4,18 @@ class TodosController < ApplicationController
   # GET /todos
   # GET /todos.json
   def index
-    @todos = Todo.all
+    if(current_user.has_role?(:developer))
+      @todos = Todo.where(developer_id: current_user.id, project_id: params[:project_id])
+    else
+      @todos = Todo.where(project_id: params[:project_id])
+    end
     render json: @todos
   end
 
   # GET /todos/1
   # GET /todos/1.json
   def show
-    render json: @project
+    render json: @todo
   end
 
   # POST /todos
@@ -43,7 +47,16 @@ class TodosController < ApplicationController
   end
 
   def dashboard
-    todos = Todo.dashboard
+    if params[:type] == "project"
+      todos = Todo.project_wise_dashboard
+    elsif params[:type] == "developer"
+      todos = Todo.developer_wise_dashboard
+    end
+    render json: todos
+  end
+
+  def charts
+    todos = Todo.project_wise_charts
     render json: todos
   end
 
@@ -55,6 +68,6 @@ class TodosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def todo_params
-      params.require(:todo).permit(:id, :name, :description, :status, :developer_id, :project_id)
+      params.permit(:id, :name, :description, :status, :developer_id, :project_id)
     end
 end

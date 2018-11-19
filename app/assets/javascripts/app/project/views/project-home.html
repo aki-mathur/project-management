@@ -11,9 +11,9 @@
      <md-card-content>
        <div layout="row" layout-align="space-between">
          <div>
-             <span style="font-weight:bold;">{{project.name | uppercase}}</span>
+             <a ng-href="/#/projects/{{project.id}}/todos" style="text-decoration: none;"><span style="font-weight:bold;">{{project.name | uppercase}}</span></a>
          </div>
-         <div layout="row">
+         <div layout="row" ng-show="project.can_update">
            <md-button id="close" class="md-icon-button" style="margin-top: -15px;" ng-click="ProjectHomeVM.createEditProject($event,project,$index)">
              <md-icon md-svg-src="images/pencil.svg" class="ng-scope" role="img" aria-hidden="true"></md-icon>
              <md-tooltip>Edit</md-tooltip>
@@ -26,7 +26,7 @@
   </md-content>
 </div>
 
-<button class="md-fab md-fab-bottom-right docs-scroll-fab md-button md-ink-ripple scrolling" type="button" aria-label="Add" ng-click="ProjectHomeVM.createEditProject($event,{},null)">
+<button ng-if="ProjectHomeVM.can_create" class="md-fab md-fab-bottom-right docs-scroll-fab md-button md-ink-ripple scrolling" type="button" aria-label="Add" ng-click="ProjectHomeVM.createEditProject($event,{},null)">
     <md-icon md-svg-src="images/plus.svg"  role="img" aria-hidden="true"></md-icon>
     <md-tooltip md-direction="top">Add Project</md-tooltip>
 </button>

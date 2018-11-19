@@ -67,13 +67,11 @@
     function loadItems(items) {
       return items.map(function (item) {
        item._lowername = item.name.toLowerCase();
-       console.log(item);
        return item;
       });
     }
 
     function saveProject(form) {
-      console.log(form);
       var returnBack = false;
       if(form.$invalid) {
         $scope.formSubmitted = true;
@@ -81,6 +79,7 @@
       }
       if(returnBack)
       return;
+
       ProjectCreateEditVM.project.developer_ids = ProjectCreateEditVM.selectedDevelopers.map(function(head) {
         return head.id;
       })
@@ -100,7 +99,7 @@
             });
         });
       } else {
-        ProjectService.save({project: ProjectCreateEditVM.project}).$promise.then(function(value) {
+        ProjectService.save(ProjectCreateEditVM.project).$promise.then(function(value) {
           ProjectCreateEditVM.project = value
           ProjectCreateEditVM.projectErrors = [];
           ProjectCreateEditVM.project.requestType = "save";

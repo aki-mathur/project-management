@@ -1,0 +1,38 @@
+<style>
+#left-sidenav md-list-item:before {
+  /*min-height: 0px;*/
+}
+#left-sidenav md-list-item{
+  /*color: #fff;*/
+-webkit-font-smoothing: antialiased;
+font-weight: 500;
+line-height: 40px;
+font-size: 14px;
+letter-spacing: .14px;
+}
+#left-sidenav md-list{
+  /*padding: 0px;*/
+}
+</style>
+<md-content layout="row" id="main-block-content">
+    <md-sidenav flex class="md-sidenav-left" id="left-sidenav" style="height: 100vh;max-width:18%;" md-is-locked-open="true" md-whiteframe="4">
+      <md-toolbar class="md-whiteframe-1dp">
+        <div class="md-toolbar-tools" layout="row" layout-align="center center">
+          <h4>Project Management</h4>
+        </div>
+      </md-toolbar>
+      <md-list style="width: 100%;">
+        <md-list-item ng-repeat="menu in HomeCtrlVM.menuItem" ng-click="HomeCtrlVM.goTo(menu.state)">
+            <div layout="row">
+              {{::menu.name}}
+            </div>
+        </md-list-item>
+        <md-list-item ng-click="HomeCtrlVM.logout()">
+          <div>
+            Logout
+          </div>
+        </md-list-item>
+      </md-list>
+    </md-sidenav>
+    <ui-view flex style="height:100vh;overflow:auto;max-height:1680px;" ></ui-view>
+</md-content>

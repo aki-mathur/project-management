@@ -7,6 +7,11 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'todos#dashboard'
 
+  get 'charts', to: 'todos#charts'
+
+  get 'developers', to: 'projects#developers'
+
+
   root "application#index"
 
 end

@@ -8,17 +8,54 @@
     var HomeCtrlVM = this;
     HomeCtrlVM.goTo = goTo;
     HomeCtrlVM.logout = logout;
+    HomeCtrlVM.menuItem = []
 
     function logout(){
-      Auth.logout
+      var config = {
+            headers: {
+                'X-HTTP-Method-Override': 'DELETE'
+            }
+        };
+        Auth.logout(config).then(function(oldUser) {
+          $state.go("login",{});
+        }, function(error) {
+            // An error occurred logging out.
+        });
+
     }
 
-    HomeCtrlVM.menuItem = [
-    {name:"Dashboard", icon: $sce.trustAsHtml('<i class="fa fa-dashboard"></i>'), state: {name:'container.user.dashboard', args: {}}},
-    {name:"Developers", icon: $sce.trustAsHtml('<i class="fa fa-list "></i>'), state: {name:'container.user.developer', args: {}}},
-    {name:"Projects", icon: $sce.trustAsHtml('<i class="fa  fa-wpforms"></i>'), state: {name:'container.user.project', args: {}}},
-    {name:"Todos", icon: $sce.trustAsHtml('<i class="fa  fa-archive"></i>'), state: {name:'container.user.todo', args: {}}}
-]
+    function setMenuList() {
+        switch($rootScope.user.role) {
+          case 'project_manager':
+              HomeCtrlVM.menuItem = projectManagerMenuList;
+              break;
+          case 'developer':
+              HomeCtrlVM.menuItem = developerMenuList;
+              break;;
+          default: HomeCtrlVM.menuItem = [];
+              break;
+        };
+
+      }
+
+
+    var projectManagerMenuList = [
+      {name:"Dashboard", icon: $sce.trustAsHtml('<i class="fa fa-dashboard"></i>'), state: {name:'container.user.dashboard', args: {}}},
+      // {name:"Developers", icon: $sce.trustAsHtml('<i class="fa fa-list "></i>'), state: {name:'container.user.developer', args: {}}},
+      {name:"Projects", icon: $sce.trustAsHtml('<i class="fa  fa-wpforms"></i>'), state: {name:'container.user.project', args: {}}},
+      // {name:"Todos", icon: $sce.trustAsHtml('<i class="fa  fa-archive"></i>'), state: {name:'container.user.todo', args: {}}},
+      {name:"Charts", icon: $sce.trustAsHtml('<i class="fa  fa-pie-chart"></i>'), state: {name:'container.user.chart', args: {}}}
+     ];
+
+
+     var developerMenuList = [
+       {name:"Projects", icon: $sce.trustAsHtml('<i class="fa  fa-wpforms"></i>'), state: {name:'container.user.project', args: {}}}
+       // {name:"Todos", icon: $sce.trustAsHtml('<i class="fa  fa-archive"></i>'), state: {name:'container.user.todo', args: {}}}
+     ];
+
+
+     setMenuList();
+
     function goTo(state) {
       return $state.go(state.name,state.args);
     }

@@ -8,7 +8,8 @@ angular.module('projectManagement', [
   'vAccordion',
   'ng-mfb',
   'angular-loading-bar',
-  'Devise'
+  'Devise',
+  'googlechart'
 ]);
 
 angular.module('projectManagement')
@@ -18,5 +19,5 @@ angular.module('projectManagement')
 
 angular.module('projectManagement')
   .controller('RootController', ['$scope',function($scope) {
-    console.log("HomeCtrl");
+    
   }]);

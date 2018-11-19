@@ -12,11 +12,14 @@
 
 ActiveRecord::Schema.define(version: 20181006171835) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "projects", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
-    t.integer "created_by_id", null: false
-    t.integer "updated_by_id", null: false
+    t.bigint "created_by_id", null: false
+    t.bigint "updated_by_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["created_by_id"], name: "index_projects_on_created_by_id"
@@ -24,8 +27,8 @@ ActiveRecord::Schema.define(version: 20181006171835) do
   end
 
   create_table "projects_users", force: :cascade do |t|
-    t.integer "project_id"
-    t.integer "user_id"
+    t.bigint "project_id"
+    t.bigint "user_id"
     t.index ["project_id"], name: "index_projects_users_on_project_id"
     t.index ["user_id"], name: "index_projects_users_on_user_id"
   end
@@ -33,7 +36,7 @@ ActiveRecord::Schema.define(version: 20181006171835) do
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
-    t.integer "resource_id"
+    t.bigint "resource_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
@@ -45,15 +48,15 @@ ActiveRecord::Schema.define(version: 20181006171835) do
     t.string "name", null: false
     t.text "description"
     t.integer "status"
-    t.integer "project_id", null: false
-    t.integer "developer_id", null: false
-    t.integer "created_by_id", null: false
-    t.integer "updated_by_id", null: false
+    t.bigint "project_id", null: false
+    t.bigint "developer_id", null: false
+    t.bigint "created_by_id", null: false
+    t.bigint "updated_by_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["created_by_id"], name: "index_todos_on_created_by_id"
     t.index ["developer_id"], name: "index_todos_on_developer_id"
-    t.index ["project_id", "developer_id"], name: "index_todos_on_project_id_and_developer_id", unique: true
+    t.index ["project_id", "developer_id"], name: "index_todos_on_project_id_and_developer_id"
     t.index ["updated_by_id"], name: "index_todos_on_updated_by_id"
   end
 
@@ -68,8 +71,8 @@ ActiveRecord::Schema.define(version: 20181006171835) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.integer "created_by_id", null: false
-    t.integer "updated_by_id", null: false
+    t.bigint "created_by_id", null: false
+    t.bigint "updated_by_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
@@ -81,8 +84,8 @@ ActiveRecord::Schema.define(version: 20181006171835) do
   end
 
   create_table "users_roles", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "role_id"
+    t.bigint "user_id"
+    t.bigint "role_id"
     t.index ["role_id"], name: "index_users_roles_on_role_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
     t.index ["user_id"], name: "index_users_roles_on_user_id"
