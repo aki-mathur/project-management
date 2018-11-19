@@ -13,8 +13,9 @@
     function signup(){
       Auth.register(RegistrationVM.user, config).then(function(registeredUser) {
           $rootScope.user = registeredUser
-          $state.go('container.user.project');
+          $state.go('login');
        }, function(response) {
+         console.log(response);
          $mdToast.show({
                template: '<md-toast class="md-toast ' + 'error' +'">' + response.data.errors.join(', ') + '</md-toast>',
                hideDelay: 3000,

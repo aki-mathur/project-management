@@ -1,6 +1,6 @@
 angular.module('projectManagement').config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/login');
 
   var containerState = {
     name: 'container',
