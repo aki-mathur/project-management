@@ -1,0 +1,57 @@
+<div layout="column" flex layout-fill ng-cloak>
+
+  <md-toolbar class="md-whiteframe-1dp">
+    <div layout="row">
+      <div class="md-toolbar-tools">Dashboard</div>
+      <div>
+        <md-select ng-model="DashboardVM.selectedType" ng-change="DashboardVM.switchDashboard()">
+           <md-option ng-value="type.value" ng-repeat="type in DashboardVM.dashboardType">{{ type.name }}</md-option>
+        </md-select>
+      </div>
+    </div>
+  </md-toolbar>
+
+  <md-content style="height: calc(100vh - 64px);padding-bottom: 60px;" md-theme="altTheme">
+
+    <div layout="row" layout-align="space-around">
+      <md-card style="width: 10%">
+       <md-card-content>
+         <b>Status</b>
+       </md-card-content>
+     </md-card>
+     <md-card style="width: 30%">
+      <md-card-content>
+        <b>Open</b>
+      </md-card-content>
+    </md-card>
+    <md-card style="width: 30%">
+     <md-card-content>
+       <b>In Process</b>
+     </md-card-content>
+   </md-card>
+   <md-card style="width: 30%">
+    <md-card-content>
+      <b>Done</b>
+    </md-card-content>
+  </md-card>
+    </div>
+
+    <div layout="row" layout-align="space-around" ng-repeat="developer_task in DashboardVM.developer_tasks">
+      <md-card style="width: 10%">
+       <md-card-content>
+         {{developer_task.name}}
+       </md-card-content>
+      </md-card>
+      <md-card style="width: 30%" ng-repeat="status in developer_task.status">
+       <md-card-content>
+         <ul>
+         <li ng-repeat="task in status.tasks">
+           {{task.name}}
+         </li>
+         </ul>
+       </md-card-content>
+      </md-card>
+
+    </div>
+  </md-content>
+</div>
