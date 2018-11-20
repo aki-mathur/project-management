@@ -2,6 +2,8 @@ class Todo < ApplicationRecord
   belongs_to :project
   belongs_to :developer, class_name: "User"
   enum status: [ :open, :done, :in_progress]
+  validates :name, :description, presence: true
+
 
   def self.developer_wise_dashboard
     developer_ids = Todo.all.order(:created_at).pluck(:developer_id).uniq

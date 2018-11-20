@@ -1,9 +1,9 @@
 (function() {
   'use strict';
   angular.module('projectManagement').controller('TodoCreateEditCtrl', TodoCreateEditCtrl);
-  TodoCreateEditCtrl.$inject = ['$scope', '$stateParams', '$state','$mdToast' ,'$mdDialog','todo','developers','projects','TodoService'];
+  TodoCreateEditCtrl.$inject = ['$scope', '$stateParams', '$state','$mdToast' ,'$mdDialog','todo','developers','TodoService','$stateParams'];
 
-  function TodoCreateEditCtrl($scope, $stateParams, $state, $mdToast, $mdDialog, todo, developers, projects, TodoService) {
+  function TodoCreateEditCtrl($scope, $stateParams, $state, $mdToast, $mdDialog, todo, developers, TodoService, $stateParams) {
     var TodoCreateEditVM = this;
 
     $scope.formSubmitted = false;
@@ -17,7 +17,6 @@
     TodoCreateEditVM.isUpdate = angular.isDefined(TodoCreateEditVM.todo.id);
 
     TodoCreateEditVM.developers = developers;
-    TodoCreateEditVM.projects = projects;
     TodoCreateEditVM.saveTodo = saveTodo
     TodoCreateEditVM.deleteTodo = deleteTodo;
     TodoCreateEditVM.todoErrors = []
@@ -49,6 +48,7 @@
             });
         });
       } else {
+        TodoCreateEditVM.todo.project_id = $stateParams.id
         TodoService.save(TodoCreateEditVM.todo).$promise.then(function(value) {
           TodoCreateEditVM.todo = value
           TodoCreateEditVM.todoErrors = [];
