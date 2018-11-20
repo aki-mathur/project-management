@@ -1,0 +1,9 @@
+DATABASE_USERNAME: "postgres"
+DATABASE_PASSWORD: "root"
+DATABASE_HOST: "localhost"
+DATABASE_NAME: "project_management_development"
+development:
+  DATABASE_NAME: "project_management_development"
+
+test:
+  DATABASE_NAME: "project_management_test"
