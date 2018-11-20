@@ -1,9 +1,9 @@
 (function() {
   'use strict';
   angular.module('projectManagement').controller('TodoCreateEditCtrl', TodoCreateEditCtrl);
-  TodoCreateEditCtrl.$inject = ['$scope', '$stateParams', '$state','$mdToast' ,'$mdDialog','todo','developers','TodoService','$stateParams'];
+  TodoCreateEditCtrl.$inject = ['$scope', '$stateParams', '$state','$mdToast' ,'$mdDialog','todo','developers','TodoService'];
 
-  function TodoCreateEditCtrl($scope, $stateParams, $state, $mdToast, $mdDialog, todo, developers, TodoService, $stateParams) {
+  function TodoCreateEditCtrl($scope, $stateParams, $state, $mdToast, $mdDialog, todo, developers, TodoService) {
     var TodoCreateEditVM = this;
 
     $scope.formSubmitted = false;
