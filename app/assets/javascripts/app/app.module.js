@@ -5,19 +5,13 @@ angular.module('projectManagement', [
   'ui.router',
   'ngMaterial',
   'valdr',
-  'vAccordion',
-  'ng-mfb',
   'angular-loading-bar',
   'Devise',
   'googlechart'
 ]);
 
-angular.module('projectManagement')
-  .run(['$rootScope', function($rootScope) {
-
-  }]);
 
 angular.module('projectManagement')
   .controller('RootController', ['$scope',function($scope) {
-    
+
   }]);

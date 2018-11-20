@@ -19,15 +19,13 @@
 //
 //= require angular-rails-templates
 //
-//= require ui-router/angular-ui-router.min
+//= require angular-ui/angular-ui-router.min
 //
 //= require app/app.module
-//= require mfb-directive
 //= require valdr/valdr
 //= require valdr/valdr-message
 //= require_tree .
 //
-//= require vaccordion/v-accordion
 //= require angular-devise.min
 
 

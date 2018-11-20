@@ -20,11 +20,11 @@ angular.module('projectManagement').config(['$stateProvider','$urlRouterProvider
     url: '/login',
     controller: 'LoginCtrl as LoginVM',
     templateUrl: 'app/common/views/login.html',
-    onEnter: function(Auth, $state){
+    onEnter: ['Auth','$state', function(Auth, $state){
          Auth.currentUser().then(function(){
            $state.go('container.user.dashboard')
          })
-       }
+       }]
   }
   var containerPublicRegistrationState = {
     name: 'signup',
