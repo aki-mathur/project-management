@@ -1,9 +1,9 @@
 (function() {
   'use strict';
   angular.module('projectManagement').controller('TodoHomeCtrl', TodoHomeCtrl);
-  TodoHomeCtrl.$inject = ['$scope', '$stateParams', '$state', '$mdDialog', 'todos', '$mdToast', 'TodoService', '$location'];
+  TodoHomeCtrl.$inject = ['$scope', '$stateParams', '$state', '$mdDialog', 'todos', '$mdToast', 'TodoService', '$location','$rootScope'];
 
-  function TodoHomeCtrl($scope, $stateParams, $state, $mdDialog, todos, $mdToast, TodoService,$location) {
+  function TodoHomeCtrl($scope, $stateParams, $state, $mdDialog, todos, $mdToast, TodoService,$location,$rootScope) {
     var TodoHomeVM = this;
     TodoHomeVM.createEditTodo = createEditTodo;
     TodoHomeVM.todos = todos;
