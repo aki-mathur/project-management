@@ -12,6 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
      @user = User.new(user_params.merge!(created_by_id: 0, updated_by_id: 0))
+     @user.skip_confirmation!
      if @user.save
        @user.add_role(:developer)
         render json: @user
