@@ -8,11 +8,11 @@ Steps for setup:
 
 * rake db:seed
 
- Project Manager Login
- email: admin@gmail.com
+ Project Manager(Admin) Login
+ email: admin1@gmail.com
  password: admin#123
  
  
  Developer Login
  email: dev1@gmail.com
- password: admin#123
+ password: dev#123
