@@ -16,7 +16,7 @@ class ApplicationPolicy
   end
 
   def create?
-    user.has_role?(:project_manager)
+    user.has_role?(:admin)
   end
 
   def update?
@@ -24,7 +24,7 @@ class ApplicationPolicy
   end
 
   def destroy?
-    user.has_role?(:project_manager)
+    user.has_role?(:admin)
   end
 
   def scope

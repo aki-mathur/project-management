@@ -1,5 +1,5 @@
 class ProjectPolicy < ApplicationPolicy
   def update?
-    user.has_role?(:project_manager)
+    user.has_role?(:admin)
   end
 end

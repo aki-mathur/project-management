@@ -8,7 +8,7 @@
     ProjectHomeVM.projects = projects
     ProjectHomeVM.createEditProject = createEditProject
 
-    ProjectHomeVM.can_create = $rootScope.user.role == "project_manager" ? true : false
+    ProjectHomeVM.can_create = $rootScope.user.role == "admin" ? true : false
 
 
     function createEditProject(ev, project, index) {

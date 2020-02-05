@@ -31,7 +31,7 @@
 
     function setMenuList() {
         switch($rootScope.user.role) {
-          case 'project_manager':
+          case 'admin':
               HomeCtrlVM.menuItem = projectManagerMenuList;
               break;
           case 'developer':

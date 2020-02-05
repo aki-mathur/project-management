@@ -11,6 +11,6 @@ class Role < ApplicationRecord
 
   scopify
 
-  PROJECT_MANAGER = 'project_manager'
+  ADMIN = 'admin'
   DEVELOPER = 'developer'
 end

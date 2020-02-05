@@ -10,7 +10,7 @@
     TodoHomeVM.newTodo = {}
     TodoHomeVM.todo = {}
 
-    TodoHomeVM.can_create = $rootScope.user.role == "project_manager" ? true : false
+    TodoHomeVM.can_create = $rootScope.user.role == "admin" ? true : false
 
 
     function createEditTodo(ev, todo, index) {
